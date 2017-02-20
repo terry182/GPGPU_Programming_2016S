@@ -24,7 +24,13 @@ __global__ void Draw(char *frame) {
 			c = y == H-1 ? '\0' : '\n';
 		} else if (y == 0 or y == H-1 or x == 0 or x == W-2) {
 			c = ':';
-		} else {
+        } else if (y >= H-7 and y < H-1 and x <= 20 and x > (4 + (H-y)*2)) {
+            c = '#';
+        } else if (x == 32 and y >= H-7 and y < H-1) {
+            c = (y == H-2) ? '#' : '|';
+        } else if (x == 31 and y == H-7){
+            c = '<';
+        } else {
 			c = ' ';
 		}
 		frame[y*W+x] = c;
